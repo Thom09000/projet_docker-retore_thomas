@@ -1,0 +1,40 @@
+   Explication demandées dans le READ.ME :
+   
+     1 - Comment lancer la stack (`docker compose up -d`)
+
+        Il faut ce placer dans le bon fichier Blog_Thomas\miniblog
+
+        (en bash) cd C:\Users\Thomas\Desktop\Blog_Thomas\miniblog
+
+        Puis, depuis le dossier "miniblog" faire un "docker compose up -d"
+
+
+     2 - À quels ports chaque service est accessible
+
+        La base de donnée du miniblog communique via le port:
+        http://localhost:8081/
+        Le service de Miniblog est accessible via le port:
+        http://localhost:8080/
+        Le service mail du miniblog est accessible via le port:
+        http://localhost:8080/contact.php
+        Le service de MailHog est accessible via le port:
+        http://localhost:8025/
+
+     3 - Comment importer/restaurer la base
+
+        Pour réinititliser/mettre à jour la stack environnement il faut suprimer les containers et leurs images avant de les remettre via les commandes bash suivantes :
+        docker compose down -v
+        docker compose up -d
+docker compose exec db mysql -u bloguser -p blogpass miniblog
+        Pour se connecter manuellement à mysql, en bash, on tape:
+        docker compose exec db mysql -u bloguser -p blogpass miniblog
+
+     Bonus 1 - Restart policy
+
+          Le paramêtre restart: unless-stopped tente de redémarrer les containers où il est appliqué si quelques problèmes l'en empêche et qu'il n"est pas stoppé (docker stop)
+          Avec le docker kill (id app) on constate, dans docker, que le container s'arrête
+
+     Bonus 2 - Réseau nommé
+
+     Bonus 3 - Second environnement
+
